@@ -5,7 +5,7 @@
 #PBS -m a
 #PBS -qteaching
 #PBS -lnodes=1:ppn=16
-#PBS -lwalltime=00:10:00
+#PBS -lwalltime=00:20:00
 
 cd $PBS_O_WORKDIR
 
@@ -14,12 +14,16 @@ echo Time is `date`
 echo Directory is `pwd`
 echo PBS job ID is $PBS_JOBID
 
-echo "gcc -O2"
-./stencil0 1024 1024 100
-echo "gcc -O3"
-./stencil1 1024 1024 100
-echo "icc -O2"
-./stencil2 1024 1024 100
-echo "icc -O3"
-./stencil3 1024 1024 100
+echo "gcc v4.6.4 -O2"
+./gcc_464_O2 1024 1024 100
+echo "gcc v4.6.4 -O3"
+./gcc_464_O3 1024 1024 100
+echo "gcc v4.7 -O2"
+./gcc_470_O2 1024 1024 100
+echo "gcc v4.7 -O3"
+./gcc_470_O3 1024 1024 100
+echo "gcc v4.8.1 -O2"
+./gcc_481_O2 1024 1024 100
+echo "gcc v4.8.1 -O3"
+./gcc_481_O3 1024 1024 100
 

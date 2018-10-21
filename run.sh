@@ -26,3 +26,18 @@ module unload languages/gcc-4.6.4
 module load languages/gcc-4.7
 gcc -std=c99 -Wall stencil.c -o gcc_470_O2 -O2 -ffast-math -funsafe-math-optimizations
 gcc -std=c99 -Wall stencil.c -o gcc_470_O3 -O3 -ffast-math -funsafe-math-optimizations
+
+module unload languages/gcc-4.7
+module load languages/gcc-4.8.1
+gcc -std=c99 -Wall stencil.c -o gcc_481_O2 -O2 -ffast-math -funsafe-math-optimizations
+gcc -std=c99 -Wall stencil.c -o gcc_481_O3 -O3 -ffast-math -funsafe-math-optimizations
+
+module unload languages/gcc-4.8.1
+module load languages/gcc-4.8.4
+gcc -std=c99 -Wall stencil.c -o gcc_484_O2 -O2 -ffast-math -funsafe-math-optimizations
+gcc -std=c99 -Wall stencil.c -o gcc_484_O3 -O3 -ffast-math -funsafe-math-optimizations
+
+module unload languages/gcc-4.8.4
+module load languages/gcc-4.8.5
+gcc -std=c99 -Wall stencil.c -o gcc_485_O2 -O2 -ffast-math -funsafe-math-optimizations
+gcc -std=c99 -Wall stencil.c -o gcc_485_O3 -O3 -ffast-math -funsafe-math-optimizations
