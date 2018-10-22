@@ -41,3 +41,33 @@ module unload languages/gcc-4.8.4
 module load languages/gcc-4.8.5
 gcc -std=c99 -Wall stencil.c -o gcc_485_O2 -O2 -ffast-math -funsafe-math-optimizations
 gcc -std=c99 -Wall stencil.c -o gcc_485_O3 -O3 -ffast-math -funsafe-math-optimizations
+
+module unload languages/gcc-4.8.5
+module load languages/gcc-4.9.1
+gcc -std=c99 -Wall stencil.c -o gcc_491_O2 -O2 -ffast-math -funsafe-math-optimizations
+gcc -std=c99 -Wall stencil.c -o gcc_491_O3 -O3 -ffast-math -funsafe-math-optimizations
+
+module unload languages/gcc-4.9.1
+module load languages/gcc-5.0
+gcc -std=c99 -Wall stencil.c -o gcc_500_O2 -O2 -ffast-math -funsafe-math-optimizations
+gcc -std=c99 -Wall stencil.c -o gcc_500_O3 -O3 -ffast-math -funsafe-math-optimizations
+
+module unload languages/gcc-5.0
+module load languages/gcc-5.1
+gcc -std=c99 -Wall stencil.c -o gcc_510_O2 -O2 -ffast-math -funsafe-math-optimizations
+gcc -std=c99 -Wall stencil.c -o gcc_510_O3 -O3 -ffast-math -funsafe-math-optimizations
+
+module unload languages/gcc-5.1
+module load languages/gcc-5.3
+gcc -std=c99 -Wall stencil.c -o gcc_530_O2 -O2 -ffast-math -funsafe-math-optimizations
+gcc -std=c99 -Wall stencil.c -o gcc_530_O3 -O3 -ffast-math -funsafe-math-optimizations
+
+module unload languages/gcc-5.3
+module load languages/gcc-6.1
+gcc -std=c99 -Wall stencil.c -o gcc_610_O2 -O2 -ffast-math -funsafe-math-optimizations
+gcc -std=c99 -Wall stencil.c -o gcc_610_O3 -O3 -ffast-math -funsafe-math-optimizations
+
+module unload languages/gcc-6.1
+module load languages/gcc-7.1.0
+gcc -std=c99 -Wall stencil.c -o gcc_710_O2 -O2 -ffast-math -funsafe-math-optimizations
+gcc -std=c99 -Wall stencil.c -o gcc_710_O3 -O3 -ffast-math -funsafe-math-optimizations
