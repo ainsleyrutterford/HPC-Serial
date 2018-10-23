@@ -55,19 +55,28 @@ if not (nx == ref_nx and ny == ref_ny): print "Error: image sizes do not match";
 
 # Compare images
 passed = True
+correct = 0
+incorrect = 0
 for j in range(int(ref_ny)):
     for i in range(int(ref_nx)):
         ref_val = ord(stencil_ref.read(1))
         val = ord(stencil_res.read(1))
         if abs(ref_val - val) > parsed_args.tolerance:
             passed = False
+            incorrect += 1
             if (parsed_args.verbose):
                 print "Values differ at ("+str(i)+", "+str(j)+"): ref="+str(ref_val)+", res="+str(val)
+        else:
+            if (parsed_args.verbose):
+                print "Same at ("+str(i)+", "+str(j)+"): ref="+str(ref_val)+", res="+str(val)
+            correct += 1
 
 # Print summary
 print 80*"-"
 if passed:
     print "Comparison passed: images match with tolerance +/- "+str(parsed_args.tolerance)
+    print "Correct pixels: "+str(correct)+". Incorrect pixels: "+str(incorrect)+"."
 else:
     print "Comparison failed"
+    print "Correct pixels: "+str(correct)+". Incorrect pixels: "+str(incorrect)+"."
 print 80*"-"

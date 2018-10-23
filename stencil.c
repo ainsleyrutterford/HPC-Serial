@@ -52,23 +52,24 @@ int main(int argc, char *argv[]) {
 void stencil(const int nx, const int ny, double *  image, double *  tmp_image) {
   for (int j = 1; j < ny-1; ++j) {
     for (int i = 1; i < nx-1; ++i) {
-      tmp_image[i+j*nx] = image[i+j*nx] * 3.0/5.0 + image[(i-1) + j*nx] * 0.5/5.0 + image[(i+1) + j*nx] * 0.5/5.0 + image[i + (j-1)*nx] * 0.5/5.0 + image[i + (j+1)*nx] * 0.5/5.0;
+      tmp_image[i+j*nx] = image[i+j*nx] * 0.6 + image[(i-1) + j*nx] * 0.1 + image[(i+1) + j*nx] * 0.1 + image[i + (j-1)*nx] * 0.1 + image[i + (j+1)*nx] * 0.1;
     }
-  }
-  
-  for (int i = 0; i < nx; ++i) {
-    tmp_image[i+0*nx] = image[i+0*nx] * 3.0/5.0 + image[i + (0+1)*nx] * 0.5/5.0;
-    tmp_image[i+(ny-1)*nx] = image[i+(ny-1)*nx] * 3.0/5.0 + image[i + ((ny-1)-1)*nx] * 0.5/5.0;
   }
 
-  for (int j = 0; j < ny; ++j) {
-    tmp_image[0+j*nx] = image[0+j*nx] * 3.0/5.0 + image[(0+1) + j*nx] * 0.5/5.0;
-    tmp_image[(nx-1)+j*nx] = image[(nx-1)+j*nx] * 3.0/5.0 + image[((nx-1)-1) + j*nx] * 0.5/5.0;
-    if (j == 0 || j == (ny - 1)) {
-      tmp_image[0+j*nx] -= image[0+j*nx] * 3.0/5.0;
-      tmp_image[(nx-1)+j*nx] -= image[(nx-1)+j*nx] * 3.0/5.0;
-    }
+  for (int i = 1; i < nx-1; ++i) {
+    tmp_image[i+0*nx] = image[i+0*nx] * 3.0/5.0 + image[i + (0+1)*nx] * 0.5/5.0 + image[i-1] * 0.5/5.0 + image[i+1] * 0.5/5.0;
+    tmp_image[i+(ny-1)*nx] = image[i+(ny-1)*nx] * 3.0/5.0 + image[i + ((ny-1)-1)*nx] * 0.5/5.0 + image[(i-1) + (ny-1)*nx] * 0.5/5.0 + image[(i+1) + (ny-1)*nx] * 0.5/5.0;
   }
+  
+  for (int j = 1; j < ny-1; ++j) {
+    tmp_image[0+j*nx] = image[0+j*nx] * 3.0/5.0 + image[(0+1) + j*nx] * 0.5/5.0 + image[(j-1)*nx] * 0.5/5.0 + image[(j+1)*nx] * 0.5/5.0;
+    tmp_image[(nx-1)+j*nx] = image[(nx-1)+j*nx] * 3.0/5.0 + image[((nx-1)-1) + j*nx] * 0.5/5.0 + image[(nx-1) + (j-1)*nx] * 0.5/5.0 + image[(nx-1) + (j+1)*nx] * 0.5/5.0;
+  }
+
+  tmp_image[0] = image[0] * 3.0/5.0 + image[1] * 0.5/5.0 + image[nx] * 0.5/5.0;
+  tmp_image[(ny-1) * nx] = image[(ny-1) * nx] * 3.0/5.0 + image[((ny-1)-1)*nx] * 0.5/5.0 + image[1 + (ny-1)*nx] * 0.5/5.0;
+  tmp_image[nx-1] = image[nx-1] * 3.0/5.0 + image[(nx-1)-1] * 0.5/5.0 + image[(nx-1) + nx] * 0.5/5.0;
+  tmp_image[(nx-1)+(ny-1)*nx] = image[(nx-1)+(ny-1)*nx] * 3.0/5.0 + image[(nx-1)-1 + (ny-1)*nx] * 0.5/5.0 + image[nx-1 + ((ny-1)-1)*nx] * 0.5/5.0;
 }
 
 //tmp_image[i+j*nx] = image[i+j*nx] * 3.0/5.0;
