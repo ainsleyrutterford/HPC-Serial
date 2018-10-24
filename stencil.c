@@ -6,7 +6,7 @@
 // Define output file name
 #define OUTPUT_FILE "stencil.pgm"
 
-void stencil(const int nx, const int ny, float *  image, float *  tmp_image);
+void stencil(const int nx, const int ny, float * restrict image, float * restrict tmp_image);
 void init_image(const int nx, const int ny, float *  image, float *  tmp_image);
 void output_image(const char * file_name, const int nx, const int ny, float *image);
 double wtime(void);
@@ -49,27 +49,27 @@ int main(int argc, char *argv[]) {
   free(image);
 }
 
-void stencil(const int nx, const int ny, float *  image, float *  tmp_image) {
+void stencil(const int nx, const int ny, float * restrict image, float * restrict tmp_image) {
   for (int j = 1; j < ny-1; ++j) {
     for (int i = 1; i < nx-1; ++i) {
-      tmp_image[i+j*nx] = image[i+j*nx] * 0.6f + image[(i-1) + j*nx] * 0.1f + image[(i+1) + j*nx] * 0.1f + image[i + (j-1)*nx] * 0.1f + image[i + (j+1)*nx] * 0.1f;
+      tmp_image[i+j*nx] = (image[i+j*nx] * 6 + image[(i-1) + j*nx] + image[(i+1) + j*nx] + image[i + (j-1)*nx] + image[i + (j+1)*nx])/10;
     }
   }
 
   for (int i = 1; i < nx-1; ++i) {
-    tmp_image[i+0*nx] = image[i+0*nx] * 0.6f + image[i + (0+1)*nx] * 0.1f + image[i-1] * 0.1f + image[i+1] * 0.1f;
-    tmp_image[i+(ny-1)*nx] = image[i+(ny-1)*nx] * 0.6f + image[i + ((ny-1)-1)*nx] * 0.1f + image[(i-1) + (ny-1)*nx] * 0.1f + image[(i+1) + (ny-1)*nx] * 0.1f;
+    tmp_image[i+0*nx] = (image[i+0*nx] * 6 + image[i + (0+1)*nx] + image[i-1] + image[i+1])/10;
+    tmp_image[i+(ny-1)*nx] = (image[i+(ny-1)*nx] * 6 + image[i + ((ny-1)-1)*nx] + image[(i-1) + (ny-1)*nx] + image[(i+1) + (ny-1)*nx])/10;
   }
   
   for (int j = 1; j < ny-1; ++j) {
-    tmp_image[0+j*nx] = image[0+j*nx] * 0.6f + image[(0+1) + j*nx] * 0.1f + image[(j-1)*nx] * 0.1f + image[(j+1)*nx] * 0.1f;
-    tmp_image[(nx-1)+j*nx] = image[(nx-1)+j*nx] * 0.6f + image[((nx-1)-1) + j*nx] * 0.1f + image[(nx-1) + (j-1)*nx] * 0.1f + image[(nx-1) + (j+1)*nx] * 0.1f;
+    tmp_image[0+j*nx] = (image[0+j*nx] * 6 + image[(0+1) + j*nx] + image[(j-1)*nx] + image[(j+1)*nx])/10;
+    tmp_image[(nx-1)+j*nx] = (image[(nx-1)+j*nx] * 6 + image[((nx-1)-1) + j*nx] + image[(nx-1) + (j-1)*nx] + image[(nx-1) + (j+1)*nx])/10;
   }
 
-  tmp_image[0] = image[0] * 0.6f + image[1] * 0.1f + image[nx] * 0.1f;
-  tmp_image[(ny-1) * nx] = image[(ny-1) * nx] * 0.6f + image[((ny-1)-1)*nx] * 0.1f + image[1 + (ny-1)*nx] * 0.1f;
-  tmp_image[nx-1] = image[nx-1] * 0.6f + image[(nx-1)-1] * 0.1f + image[(nx-1) + nx] * 0.1f;
-  tmp_image[(nx-1)+(ny-1)*nx] = image[(nx-1)+(ny-1)*nx] * 0.6f + image[(nx-1)-1 + (ny-1)*nx] * 0.1f + image[nx-1 + ((ny-1)-1)*nx] * 0.1f;
+  tmp_image[0] = (image[0] * 6 + image[1] + image[nx])/10;
+  tmp_image[(ny-1) * nx] = (image[(ny-1) * nx] * 6 + image[((ny-1)-1)*nx] + image[1 + (ny-1)*nx])/10;
+  tmp_image[nx-1] = (image[nx-1] * 6 + image[(nx-1)-1] + image[(nx-1) + nx])/10;
+  tmp_image[(nx-1)+(ny-1)*nx] = (image[(nx-1)+(ny-1)*nx] * 6 + image[(nx-1)-1 + (ny-1)*nx] + image[nx-1 + ((ny-1)-1)*nx])/10;
 }
 
 //tmp_image[i+j*nx] = image[i+j*nx] * 3.0/5.0;
