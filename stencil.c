@@ -5,6 +5,8 @@
 
 // Define output file name
 #define OUTPUT_FILE "stencil.pgm"
+//#define MIN(x, y) (((x) < (y)) ? (x) : (y))
+//#define STEP 2048
 
 void stencil(const int nx, const int ny, float * restrict image, float * restrict tmp_image);
 void init_image(const int nx, const int ny, float *  image, float *  tmp_image);
@@ -55,6 +57,15 @@ void stencil(const int nx, const int ny, float * restrict image, float * restric
       tmp_image[i+j*nx] = (image[i+j*nx] * 6 + image[(i-1) + j*nx] + image[(i+1) + j*nx] + image[i + (j-1)*nx] + image[i + (j+1)*nx])/10;
     }
   }
+//  for (int j = 1; j < ny-1; j += STEP) {
+//    for (int i = 1; i < nx-1; i += STEP) {
+//      for (int y = j; y < MIN(j+STEP, ny-1); y++) {
+//       for (int x = i; x < MIN(i+STEP, nx-1); x++) {
+//         tmp_image[x+y*nx] = (image[x+y*nx] * 6 + image[(x-1) + y*nx] + image[(x+1) + y*nx] + image[x + (y-1)*nx] + image[x + (y+1)*nx])/10;
+//       }
+//     }
+//   }
+// }
 
   for (int i = 1; i < nx-1; ++i) {
     tmp_image[i+0*nx] = (image[i+0*nx] * 6 + image[i + (0+1)*nx] + image[i-1] + image[i+1])/10;
