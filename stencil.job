@@ -14,47 +14,94 @@ echo Time is `date`
 echo Directory is `pwd`
 echo PBS job ID is $PBS_JOBID
 
-echo "gcc v4.6.4 -O2"
-./gcc_464_O2 1024 1024 100
+echo "gcc v4.6.4 -O0"
+./gcc_464_O0 1024 1024 100
 echo "gcc v4.6.4 -O3"
 ./gcc_464_O3 1024 1024 100
-echo "gcc v4.7 -O2"
-./gcc_470_O2 1024 1024 100
+echo "gcc v4.6.4 -O3 -march=native"
+./gcc_464_O3_n 1024 1024 100
+echo "gcc v4.7 -O0"
+./gcc_470_O0 1024 1024 100
 echo "gcc v4.7 -O3"
 ./gcc_470_O3 1024 1024 100
-echo "gcc v4.8.1 -O2"
-./gcc_481_O2 1024 1024 100
+echo "gcc v4.7 -O3 -march=native"
+./gcc_470_O3_n 1024 1024 100
+echo "gcc v4.8.1 -O0"
+./gcc_481_O0 1024 1024 100
 echo "gcc v4.8.1 -O3"
 ./gcc_481_O3 1024 1024 100
-echo "gcc v4.8.4 -O2"
-./gcc_484_O2 1024 1024 100
+echo "gcc v4.8.1 -O3 -march=native"
+./gcc_481_O3_n 1024 1024 100
+echo "gcc v4.8.4 -O0"
+./gcc_484_O0 1024 1024 100
 echo "gcc v4.8.4 -O3"
 ./gcc_484_O3 1024 1024 100
-echo "gcc v4.8.5 -O2"
-./gcc_485_O2 1024 1024 100
+echo "gcc v4.8.4 -O3 -march=native"
+./gcc_484_O3_n 1024 1024 100
+echo "gcc v4.8.5 -O0"
+./gcc_485_O0 1024 1024 100
 echo "gcc v4.8.5 -O3"
 ./gcc_485_O3 1024 1024 100
-echo "gcc v4.9.1 -O2"
-./gcc_491_O2 1024 1024 100
+echo "gcc v4.8.5 -O3 -march=native"
+./gcc_485_O3_n 1024 1024 100
+echo "gcc v4.9.1 -O0"
+./gcc_491_O0 1024 1024 100
 echo "gcc v4.9.1 -O3"
 ./gcc_491_O3 1024 1024 100
-echo "gcc v5.0 -O2"
-./gcc_500_O2 1024 1024 100
+echo "gcc v4.9.1 -O3 -march=native"
+./gcc_491_O3_n 1024 1024 100
+echo "gcc v5.0 -O0"
+./gcc_500_O0 1024 1024 100
 echo "gcc v5.0 -O3"
 ./gcc_500_O3 1024 1024 100
-echo "gcc v5.1 -O2"
-./gcc_510_O2 1024 1024 100
+echo "gcc v5.0 -O3 -march=native"
+./gcc_500_O3_n 1024 1024 100
+echo "gcc v5.1 -O0"
+./gcc_510_O0 1024 1024 100
 echo "gcc v5.1 -O3"
 ./gcc_510_O3 1024 1024 100
-echo "gcc v5.3 -O2"
-./gcc_530_O2 1024 1024 100
+echo "gcc v5.1 -O3 -march=native"
+./gcc_510_O3_n 1024 1024 100
+echo "gcc v5.3 -O0"
+./gcc_530_O0 1024 1024 100
 echo "gcc v5.3 -O3"
 ./gcc_530_O3 1024 1024 100
-echo "gcc v6.1 -O2"
-./gcc_610_O2 1024 1024 100
+echo "gcc v5.3 -O3 -march=native"
+./gcc_530_O3_n 1024 1024 100
+echo "gcc v6.1 -O0"
+./gcc_610_O0 1024 1024 100
 echo "gcc v6.1 -O3"
 ./gcc_610_O3 1024 1024 100
-echo "gcc v7.1.0 -O2"
-./gcc_710_O2 1024 1024 100
+echo "gcc v6.1 -O3 -march=native"
+./gcc_610_O3_n 1024 1024 100
+echo "gcc v7.1.0 -O0"
+./gcc_710_O0 1024 1024 100
 echo "gcc v7.1.0 -O3"
 ./gcc_710_O3 1024 1024 100
+echo "gcc v7.1.0 -O3 -march=native"
+./gcc_710_O3_n 1024 1024 100
+
+echo "icc v13 -02"
+./icc_13_O2 1024 1024 100
+echo "icc v13 -03"
+./icc_13_O3 1024 1024 100
+echo "icc v13 -03 -xHOST"
+./icc_13_O3_n 1024 1024 100
+echo "icc v14 -02"
+./icc_14_O2 1024 1024 100
+echo "icc v14 -03"
+./icc_14_O3 1024 1024 100
+echo "icc v14 -03 -xHOST"
+./icc_14_O3_n 1024 1024 100
+echo "icc v15 -02"
+./icc_15_O2 1024 1024 100
+echo "icc v15 -03"
+./icc_15_O3 1024 1024 100
+echo "icc v15 -03 -xHOST"
+./icc_15_O3_n 1024 1024 100
+echo "icc v16 -02"
+./icc_16_O2 1024 1024 100
+echo "icc v16 -03"
+./icc_16_O3 1024 1024 100
+echo "icc v16 -03 -xHOST"
+./icc_16_O3_n 1024 1024 100
